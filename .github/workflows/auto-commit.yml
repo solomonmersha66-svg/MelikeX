@@ -1,0 +1,26 @@
+name: Auto Commit Generated Files
+
+on:
+  workflow_dispatch:  # You can trigger manually from Actions tab
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Generate/Update Files
+        run: |
+          # You can run scripts here that copy the code I generate
+          # For now, placeholder
+          echo "Hello MelikeX" > example.txt
+
+      - name: Commit Changes
+        run: |
+          git config --global user.email "bot@melikex.com"
+          git config --global user.name "MelikeX Bot"
+          git add .
+          git commit -m "Auto commit from MelikeX workflow" || echo "No changes to commit"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.REPO_PUSH_TOKEN }}
