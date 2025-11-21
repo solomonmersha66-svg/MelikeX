@@ -21,6 +21,5 @@ jobs:
           git config --global user.name "MelikeX Bot"
           git add .
           git commit -m "Auto commit from MelikeX workflow" || echo "No changes to commit"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.REPO_PUSH_TOKEN }}
+          git push https://x-access-token:${{ secrets.REPO_PUSH_TOKEN }}@github.com/solomonmersha66-svg/MelikeX.git HEAD:main
+
