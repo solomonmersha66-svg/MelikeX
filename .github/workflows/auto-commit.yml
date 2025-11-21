@@ -1,20 +1,20 @@
-name: Auto Commit Generated Files
+name: Auto Commit
 
 on:
-  workflow_dispatch:  # You can trigger manually from Actions tab
+  workflow_dispatch:
 
 jobs:
   push:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
-      - name: Generate/Update Files
+      - name: Generate/Copy Files
         run: |
-          # You can run scripts here that copy the code I generate
-          # For now, placeholder
-          echo "Hello MelikeX" > example.txt
-
+          # Here we will copy the scaffolded files from ChatGPT
+          # Example:
+          cp -r generated/* apps/backend/
+          cp -r generated/* apps/dashboard/
+          cp -r generated/* apps/extension/
       - name: Commit Changes
         run: |
           git config --global user.email "bot@melikex.com"
@@ -22,4 +22,3 @@ jobs:
           git add .
           git commit -m "Auto commit from MelikeX workflow" || echo "No changes to commit"
           git push https://x-access-token:${{ secrets.REPO_PUSH_TOKEN }}@github.com/solomonmersha66-svg/MelikeX.git HEAD:main
-
